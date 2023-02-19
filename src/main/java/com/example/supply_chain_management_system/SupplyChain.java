@@ -1,6 +1,8 @@
 package com.example.supply_chain_management_system;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -56,24 +58,24 @@ public class SupplyChain extends Application {
     private GridPane loginPage(){
         Label emailLabel= new Label("Email");
         Label passwordLabel=new Label("Password");
-        //Label messageLabel= new Label("I am message");
+        Label messageLabel= new Label("I am message");
         TextField emailTextField=new TextField();
         PasswordField passwordField= new PasswordField();
-       // Button loginButton= new Button("Login");
-//        loginButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                String email= emailTextField.getText();
-//                String password= passwordField.getText();
-//                //  messageLabel.setText(email +" $$ "+ password);
+        Button loginButton= new Button("Login");
+        loginButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String email= emailTextField.getText();
+                String password= passwordField.getText();
+                  messageLabel.setText(email +" $$ "+ password);
 //                if(login.customerLogin(email,password)){
 //                    messageLabel.setText("Login Successful");
 //
 //                }else{
 //                    messageLabel.setText("Login Failed");
 //                }
-//            }
-//        });
+            }
+        });
         GridPane gridPane= new GridPane();
         gridPane.setMinSize(bodyPane.getMinWidth(),bodyPane.getMinHeight());
 
@@ -88,8 +90,8 @@ public class SupplyChain extends Application {
         gridPane.add(passwordLabel,0,1);
         gridPane.add(passwordField,1,1);
 
-//        gridPane.add(loginButton,0,2);
-//        gridPane.add(messageLabel,1,2);
+        gridPane.add(loginButton,0,2);
+        gridPane.add(messageLabel,1,2);
         return gridPane;
     }
 
