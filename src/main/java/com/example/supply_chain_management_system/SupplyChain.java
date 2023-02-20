@@ -20,21 +20,22 @@ public class SupplyChain extends Application {
     public static final int width=700,height=600,headerBar=50;
     Pane bodyPane= new Pane();
     public static int bodyWidth,bodyHeight;
-   // Login login= new Login();
-   // ProductDetails productDetails= new ProductDetails();
+    Login login= new Login();
+    ProductDetails productDetails= new ProductDetails();
+
     private GridPane headerBar(){
         TextField searchText= new TextField();
         Button searchButton= new Button("Search");
-//        searchButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                String productName=searchText.getText();
-//                productDetails.getProductByName(productName);
-//                //clear body and put this new pane in the body
-//                bodyPane.getChildren().clear();
-//                bodyPane.getChildren().add(productDetails.getProductByName(productName));
-//            }
-//        });
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String productName=searchText.getText();
+                productDetails.getProductsByName(productName);
+                //clear body and put this new pane in the body
+                bodyPane.getChildren().clear();
+                bodyPane.getChildren().add(productDetails.getProductsByName(productName));
+            }
+        });
 
 
 
@@ -68,12 +69,13 @@ public class SupplyChain extends Application {
                 String email= emailTextField.getText();
                 String password= passwordField.getText();
                   messageLabel.setText(email +" $$ "+ password);
-//                if(login.customerLogin(email,password)){
-//                    messageLabel.setText("Login Successful");
-//
-//                }else{
-//                    messageLabel.setText("Login Failed");
-//                }
+
+                if(login.customerLogin(email,password)){
+                    messageLabel.setText("Login Successful");
+
+                }else{
+                    messageLabel.setText("Login Failed");
+                }
             }
         });
         GridPane gridPane= new GridPane();
@@ -104,7 +106,7 @@ public class SupplyChain extends Application {
 //        bodyPane.getChildren().addAll(productDetails.getAllProduct());
 //
 
-        bodyPane.getChildren().addAll(loginPage());
+        bodyPane.getChildren().addAll(productDetails.getAllProducts());
         root.getChildren().addAll(headerBar(),bodyPane);
 
         return root;
