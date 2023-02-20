@@ -34,13 +34,13 @@ public class ProductDetails {
         productTable=new TableView<>();
         productTable.setItems(products);
         productTable.getColumns().addAll(id,name,price);
-        productTable.setMinSize(SupplyChain.width,SupplyChain.height);
+        productTable.setMinSize(supplyChain.width,supplyChain.height);
         productTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         Pane tablePane= new Pane();
 
         tablePane.setStyle("-fx-background-color: #C0C0C0");
-        tablePane.setMinSize(SupplyChain.width,SupplyChain.height);
+        tablePane.setMinSize(supplyChain.width,supplyChain.height);
         tablePane.getChildren().add(productTable);
 
 
@@ -67,14 +67,24 @@ public class ProductDetails {
         productTable=new TableView<>();
         productTable.setItems(products);
         productTable.getColumns().addAll(id,name,price);
-        productTable.setMinSize(SupplyChain.width,SupplyChain.height);
+        productTable.setMinSize(supplyChain.width,supplyChain.height);
         Pane tablePane=new Pane();
         tablePane.setStyle("-fx-background-color: #C0C0C0");
         productTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        tablePane.setMinSize(SupplyChain.width,SupplyChain.height);
+        tablePane.setMinSize(supplyChain.width,supplyChain.height);
         tablePane.getChildren().add(productTable);
         return tablePane;
 
     }
 
+    // for buy now option
+    public Product getSelectedProduct(){
+        try{
+            Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
+            return selectedProduct;
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
